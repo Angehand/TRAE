@@ -1,0 +1,1216 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄汉东 | 个人简历</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#666666',
+                        accent: '#3b82f6',
+                        light: '#f9f9f9',
+                        border: '#e5e5e5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-thin {
+                font-weight: 300;
+            }
+            .text-medium {
+                font-weight: 400;
+            }
+            .text-bold {
+                font-weight: 600;
+            }
+            .line-thin {
+                height: 0.5px;
+            }
+            .line-medium {
+                height: 1px;
+            }
+            .line-thick {
+                height: 2px;
+            }
+            .transition-smooth {
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            .grid-layout {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        /* Custom styles */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+            border-radius: 3px;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom cursor */
+        #custom-cursor {
+            mix-blend-mode: difference;
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        }
+        
+        /* Line animations */
+        .animate-line {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        
+        /* Section transitions */
+        .screen {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Highlight text */
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #3b82f6;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight-text:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Navigation dots */
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background-color: #000000;
+            transform: scale(1.5);
+        }
+        
+        .nav-dot:hover {
+            background-color: #666666;
+        }
+        
+        /* Skill bar */
+        .skill-bar {
+            height: 2px;
+            background-color: #e5e5e5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #000000;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #e5e5e5;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #000000;
+        }
+        
+        /* Project card */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Button hover effect */
+        .hover-button {
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+        
+        .hover-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #000000;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-button:hover {
+            color: #3b82f6;
+        }
+        
+        .hover-button:hover::after {
+            transform: scaleX(1);
+            background-color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor" class="fixed w-6 h-6 rounded-full border border-black pointer-events-none mix-blend-difference z-50 transform -translate-x-1/2 -translate-y-1/2 opacity-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-medium tracking-wider" style="font-size: 48px; color: rgba(54, 8, 9, 0.98);">黄汉东</a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-sm hover-button">关于我</a>
+                <a href="#education" class="text-sm hover-button">教育背景</a>
+                <a href="#experience" class="text-sm hover-button">实习经历</a>
+                <a href="#skills" class="text-sm hover-button">相关技能</a>
+                <a href="#contact" class="text-sm hover-button">联系方式</a>
+            </div>
+            
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden absolute w-full left-0 top-full bg-white border-t border-border transform -translate-y-full opacity-0 transition-all duration-300 invisible" id="mobile-menu">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#about" class="text-sm py-2 hover:text-accent transition-colors">关于我</a>
+                <a href="#education" class="text-sm py-2 hover:text-accent transition-colors">教育背景</a>
+                <a href="#experience" class="text-sm py-2 hover:text-accent transition-colors">实习经历</a>
+                <a href="#skills" class="text-sm py-2 hover:text-accent transition-colors">相关技能</a>
+                <a href="#contact" class="text-sm py-2 hover:text-accent transition-colors">联系方式</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navigation Dots -->
+    <div class="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col space-y-6">
+        <div class="nav-dot active" data-target="#hero"></div>
+        <div class="nav-dot" data-target="#about"></div>
+        <div class="nav-dot" data-target="#education"></div>
+        <div class="nav-dot" data-target="#experience"></div>
+        <div class="nav-dot" data-target="#skills"></div>
+        <div class="nav-dot" data-target="#contact"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="screen relative min-h-screen flex items-center justify-center z-50">
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Decorative lines -->
+            <div class="absolute top-1/4 left-0 w-full h-px bg-black opacity-10"></div>
+            <div class="absolute top-2/4 left-0 w-full h-px bg-black opacity-10"></div>
+            <div class="absolute top-3/4 left-0 w-full h-px bg-black opacity-10"></div>
+            <div class="absolute left-1/4 top-0 h-full w-px bg-black opacity-10"></div>
+            <div class="absolute left-2/4 top-0 h-full w-px bg-black opacity-10"></div>
+            <div class="absolute left-3/4 top-0 h-full w-px bg-black opacity-10"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <div class="mb-2 text-sm uppercase tracking-widest text-secondary">
+</div>
+                    <h1 class="text-5xl md:text-7xl font-thin mb-6">黄汉东</h1>
+                    <div class="w-32 h-px bg-black mb-6"></div>
+                    <p class="text-xl md:text-2xl font-thin mb-8">互联网产品 | 数字经济 | AI | PE</p>
+                    <p class="text-secondary mb-10 max-w-lg">
+                        热爱互联网产品/运营与AI的研究生，电子商务与数字经济专业背景，具备较好的产品思维和网感，熟悉AI领域行业动态和及技术趋势，擅长运营和数据分析，可熟练使用各类模型及工具。
+                    </p>
+                    <div class="flex space-x-8">
+                        <a href="#contact" class="px-6 py-3 border border-black hover:bg-black hover:text-white transition-smooth">
+                            联系我
+                        </a>
+                        <a href="#experience" class="px-6 py-3 hover-button flex items-center">
+                            查看经历 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/5">
+                    <div class="relative">
+                        <div class="absolute -inset-4 border border-black opacity-20"></div>
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d5b58030c7ca446fba51262355407bb1~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=2026022515154008F54E84197F3F777DEF&amp;rrcfp=e75484ac&amp;x-expires=1772608542&amp;x-signature=LSHIytt5Gg3VCj%2BrmZfzK8j00b8%3D" alt="黄汉东" class="w-full h-auto object-cover relative z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-primary">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="screen relative min-h-screen flex items-center z-40 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with decorative elements -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">01</div>
+                        <h2 class="text-3xl font-thin mb-6">关于我</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <div class="bg-light p-8 md:p-12 mb-12">
+                        <p class="text-lg mb-6 leading-relaxed">
+                            我叫<strong>黄汉东</strong>，上海外国语大学数字经济硕士在读、浙江农林大学电子商务本科，成绩专业前10%，斩获电子商务三创赛全国一等奖，熟练运用Figma、Xmind、Excel、SQL、office等办公软件，可独立进行产品原型设计、可撰写清晰的产品需求文档PRD；热爱AI，熟悉各类LLM，常用GPT、Gemini、DS等AI工具提高工作效率。英语六级和日语N1、普通话二甲、学习能力强，具备良好的沟通能力。
+                        </p>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="border border-border p-6 hover:border-black transition-smooth">
+                            <div class="text-3xl font-thin mb-2">SQL</div>
+                            <div class="text-sm text-secondary">
+</div>
+                            <div class="w-8 h-px bg-black mt-4"></div>
+                        </div>
+                        <div class="border border-border p-6 hover:border-black transition-smooth">
+                            <div class="text-3xl font-thin mb-2">PRD</div>
+                            <div class="text-sm text-secondary">
+</div>
+                            <div class="w-8 h-px bg-black mt-4"></div>
+                        </div>
+                        <div class="border border-border p-6 hover:border-black transition-smooth">
+                            <div class="text-3xl font-thin mb-2">AI</div>
+                            <div class="text-sm text-secondary">
+</div>
+                            <div class="w-8 h-px bg-black mt-4"></div>
+                        </div>
+                        <div class="border border-border p-6 hover:border-black transition-smooth">
+                            <div class="text-3xl font-thin mb-2">PE</div>
+                            <div class="text-sm text-secondary">
+</div>
+                            <div class="w-8 h-px bg-black mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="screen relative min-h-screen flex items-center z-30 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with decorative elements -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">02</div>
+                        <h2 class="text-3xl font-thin mb-6">教育背景</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <!-- Timeline -->
+                    <div class="relative pl-8">
+                        <!-- Timeline line -->
+                        <div class="timeline-line"></div>
+                        
+                        <!-- Item 1 -->
+                        <div class="mb-16 relative">
+                            <div class="timeline-dot" style="top: 6px;"></div>
+                            <div class="flex flex-col md:flex-row justify-between mb-4">
+                                <h3 class="text-xl font-medium">上海外国语大学</h3>
+                                <div class="text-sm text-secondary">2025.9 - 2027.6</div>
+                            </div>
+                            <div class="text-secondary mb-6">211院校 | 数字经济 | 硕士</div>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>成绩专业前10%、英语六级</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>数字科技前沿概论、数据库原理SQL</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>生成式人工智能理论与实践</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="relative">
+                            <div class="timeline-dot" style="top: 6px;"></div>
+                            <div class="flex flex-col md:flex-row justify-between mb-4">
+                                <h3 class="text-xl font-medium">浙江农林大学</h3>
+                                <div class="text-sm text-secondary">2021.9 - 2025.6</div>
+                            </div>
+                            <div class="text-secondary mb-6">省重点高校 | 电子商务 | 本科</div>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>跨境电子商务、消费者行为学、python</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>全国电子商务三创赛一等奖</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>英语六级、日语N1、计算机二级、普通话二甲</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="screen relative min-h-screen flex items-center z-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with decorative elements -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">03</div>
+                        <h2 class="text-3xl font-thin mb-6">实习经历</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <!-- Experience items -->
+                    <div class="space-y-16">
+                        <!-- Item 1 -->
+                        <div class="project-card border border-border p-8">
+                            <div class="flex flex-col md:flex-row justify-between mb-4">
+                                <h3 class="text-xl font-medium">即刻公司</h3>
+                                <div class="text-sm text-secondary">2025.10 - 2025.12</div>
+                            </div>
+                            <div class="text-secondary mb-6">AI产品增长运营 | Chatbox AI | 上海</div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>项目背景：AI聚合工具——Chatbox AI的用户规模、转化、留存、付费不及预期，并且产品有待完善优化，希望通过多元化策略推动产品实现用户增长付费和通过用户反馈和问题优化产品。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>体系搭建：从0到1搭建达人资源库：聚焦考研四六级学习、科研绘图、AI工具、职场面试、论文等核心赛道，累计筛选入库小红书KOC/KOL超500人、内容质量与数据表现俱佳的账号。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>运营策划：主导输出合作Brief、制定脚本方向、报价协商、交付周期，提供内容打样与产品会员支持、跟进初稿审核、补充产品背书、发布落地，同步完成作品链接收集、款项结算及数据统计闭环管理。按预算动态优化头腰尾部达人配比；差异化规划内容形态，多维度评估达人并调整合作优先级；对于数据不稳定的博主通过阶梯报价机制降低投放风险。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>内容孵化：打造并优化可复用的日常运营的SOP，提高工作效率。复用爆款标题封面模板，补充自来水稿、大字报等物料丰富传播矩阵；推动发布笔记100 +篇，孵化爆款20+篇（单篇互动≥1000），最高单篇互动1.3w+，
+带动品牌搜索量激增30%。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>数据提升：为干货类博主提供Prompt支持，通过迭代优化提示词逻辑，输出可复用的高质量 Prompt方案，在作品内容中增加prompt等利他内容，精准触达用户对 “高效干货工具” 的核心需求，助力相关帖子点击率提升30%。针对发布初期高流量作品及时投放薯条推广提升曝光。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>复盘调研：输出周/月度复盘报告，运用SQL、Excel提取已发布帖子数据，分析流量、互动及转化表现，针对低效赛道、场景及达人调整投放策略，优化异常作品，数据异常的内容，排查并修改敏感字眼等问题，保障内容合规发布；调研豆包、千问、Kimi等竞品广告投放场景，提炼可复用策略，为Chatbox投放优化提供参考依据。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>舆情公关：根据实时热点和产品更新，及时更新官号内容，对产品的口碑负责，维护品牌形象。日常进行抖音、小红书的舆情监测，及时发现、处理、回查负面网络舆情。对用户的问题和反馈进行总结分类管理、打包处理case并及时和产品部门同步。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="project-card border border-border p-8">
+                            <div class="flex flex-col md:flex-row justify-between mb-4">
+                                <h3 class="text-xl font-medium">蚂蚁集团</h3>
+                                <div class="text-sm text-secondary">2025.04 - 2025.07</div>
+                            </div>
+                            <div class="text-secondary mb-6">广告投放 | 借呗 | 杭州 |</div>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>负责借呗在小红书平台的科普广告投放，包括素人合作、薯条推广、敏感词替换等，提升广告触达率与点击率</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>建立300+素人KOC资源库，沟通广告排期与内容节奏，任务完成效率提升50%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>借呗产品内容的特殊性，研究平台规则，了解并审核笔记内容敏感词，并快速找到合适恰当的词替换，最终笔记广告发布成功率提高90%。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>使用Excel进行数据分析，归纳平台机制与产品优化方向</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                    <span>运用AI工具生成广告素材，素材产出效率提升25%，整体工作效率提升50%</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="screen relative min-h-screen flex items-center z-30 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with section title -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">04</div>
+                        <h2 class="text-3xl font-thin mb-6">项目经历</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <!-- Project 1 -->
+                    <div class="project-card border border-border p-8 mb-12">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <h3 class="text-xl font-medium">全国大学生电子商务三创赛</h3>
+                            <div class="text-sm text-secondary">2022.10 - 2023.9</div>
+                        </div>
+                        <div class="text-secondary mb-6">国家一等奖项目负责人</div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>负责市场调研、竞品分析与产品宣传</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>项目营业额达3万+，团队排名全国前50</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>荣获国家一等奖</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <!-- Project 1 -->
+                    <div class="project-card border border-border p-8 mb-12">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <h3 class="text-xl font-medium">AI经历</h3>
+                            <div class="text-sm text-secondary">
+</div>
+                        </div>
+                        <div class="text-secondary mb-6">AI爱好者</div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>系统学习李继刚 Prompt 提示词方法，会设计并使用prompt模板；有自己设计模仿的一些实用prompt模板。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>会使用AIGC工具（如即梦、海螺、MJ）生成动画和模型，会用COZE制作和使用相关workflow和创建Agent，有自己设计制作的一些AIGC视频和prompt模板。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>喜欢vibe coding，会设计制作一些实用有趣网站、小程序、APP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-1.5 h-1.5 rounded-full bg-black mt-2 mr-3"></div>
+                                <span>B站小UP主——星小东AI，更新“每天学习一个AI产品”系列，作品最高播放量3w+</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="screen relative min-h-screen flex items-center z-10 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with decorative elements -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">04</div>
+                        <h2 class="text-3xl font-thin mb-6">相关技能</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <!-- Technical Skills -->
+                    <div class="mb-16">
+                        <h3 class="text-xl font-medium mb-8">专业技能</h3>
+                        
+                        <div class="space-y-8">
+                            <!-- Skill 1 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>内容创作</span>
+                                    <span class="text-secondary">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 2 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>数据分析</span>
+                                    <span class="text-secondary">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 3 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>平台运营</span>
+                                    <span class="text-secondary">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 4 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>商务对接</span>
+                                    <span class="text-secondary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 5 -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>市场调研</span>
+                                    <span class="text-secondary">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools & Certifications -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Tools -->
+                        <div class="border border-border p-8">
+                            <h3 class="text-xl font-medium mb-6">工具掌握</h3>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <i class="fa fa-excel text-primary mr-3"></i>
+                                    <span>Excel</span>
+                                </div>
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <i class="fa fa-database text-primary mr-3"></i>
+                                    <span>SQL</span>
+                                </div>
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <i class="fa fa-picture-o text-primary mr-3"></i>
+                                    <span>Figma</span>
+                                </div>
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <i class="fa fa-robot text-primary mr-3"></i>
+                                    <span>Prompt</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Certifications -->
+                        <div class="border border-border p-8">
+                            <h3 class="text-xl font-medium mb-6">证书资质</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
+                                        <i class="fa fa-language text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">英语四级</div>
+                                        <div class="text-xs text-secondary">2023年</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
+                                        <i class="fa fa-language text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">日语N1</div>
+                                        <div class="text-xs text-secondary">2024年</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
+                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
+                                        <i class="fa fa-desktop text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium">计算机二级</div>
+                                        <div class="text-xs text-secondary">2022年</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="screen relative min-h-screen flex items-center z-0 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left column with decorative elements -->
+                <div class="col-span-12 md:col-span-3">
+                    <div class="sticky top-32">
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">05</div>
+                        <h2 class="text-3xl font-thin mb-6">联系方式</h2>
+                        <div class="w-16 h-px bg-black mb-8"></div>
+                        <div class="hidden md:block">
+                            <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right column with content -->
+                <div class="col-span-12 md:col-span-9">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Contact info -->
+                        <div class="border border-border p-8">
+                            <h3 class="text-xl font-medium mb-8">联系信息</h3>
+                            
+                            <div class="space-y-8">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium mb-1">邮箱</h4>
+                                        <a href="mailto:Angehand@163.com" class="text-secondary hover:text-primary transition-colors">Angehand@163.com</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium mb-1">电话</h4>
+                                        <a href="tel:+8613511271958" class="text-secondary hover:text-primary transition-colors">(+86) 13511271958</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-full border border-black flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium mb-1">地址</h4>
+                                        <p class="text-secondary">上海市</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <h4 class="font-medium mb-4">社交媒体</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-smooth">
+                                            <i class="fa fa-weixin"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-smooth">
+                                            <i class="fa fa-weibo"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-smooth">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-smooth">
+                                            <i class="fa fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact form -->
+                        <div class="border border-border p-8">
+                            <h3 class="text-xl font-medium mb-8">发送消息</h3>
+                            
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm mb-2">姓名</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-border focus:outline-none focus:border-black" placeholder="请输入您的姓名">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm mb-2">邮箱</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-border focus:outline-none focus:border-black" placeholder="请输入您的邮箱">
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block text-sm mb-2">消息</label>
+                                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-border focus:outline-none focus:border-black" placeholder="请输入您的消息"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full py-3 border border-black hover:bg-black hover:text-white transition-smooth">
+                                    发送消息
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-light border-t border-border">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-xl font-medium">黄汉东</a>
+                    <p class="text-sm text-secondary mt-2">互联网产品 | 数字经济 | AI | PE</p>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="#about" class="text-sm text-secondary hover:text-primary transition-colors">关于我</a>
+                    <a href="#education" class="text-sm text-secondary hover:text-primary transition-colors">教育背景</a>
+                    <a href="#experience" class="text-sm text-secondary hover:text-primary transition-colors">实习经历</a>
+                    <a href="#skills" class="text-sm text-secondary hover:text-primary transition-colors">相关技能</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-secondary mb-4 md:mb-0">© 2025 黄汉东. 保留所有权利.</p>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-secondary hover:text-primary transition-colors">
+                        <i class="fa fa-weixin"></i>
+                    </a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors">
+                        <i class="fa fa-weibo"></i>
+                    </a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Custom cursor functionality
+            const cursor = document.getElementById('custom-cursor');
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+
+            // Show cursor on mouse move
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.opacity = '1';
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Smooth cursor following animation
+            function animateCursor() {
+                const speed = 0.2; // Follow speed
+                cursorX += (mouseX - cursorX) * speed;
+                cursorY += (mouseY - cursorY) * speed;
+            
+                cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+                requestAnimationFrame(animateCursor);
+            }
+
+            animateCursor();
+
+            // Hover effects for interactive elements
+            const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-dot');
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.width = '40px';
+                    cursor.style.height = '40px';
+                    cursor.style.borderWidth = '2px';
+                });
+            
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.width = '24px';
+                    cursor.style.height = '24px';
+                    cursor.style.borderWidth = '1px';
+                });
+            });
+            
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('invisible')) {
+                    mobileMenu.classList.remove('invisible', '-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.add('translate-y-0', 'opacity-100');
+                    menuToggle.innerHTML = '<i class="fa fa-times"></i>';
+                } else {
+                    mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('invisible');
+                    }, 300);
+                    menuToggle.innerHTML = '<i class="fa fa-bars"></i>';
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('invisible')) {
+                        mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                        mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('invisible');
+                        }, 300);
+                        menuToggle.innerHTML = '<i class="fa fa-bars"></i>';
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Navigation dots active state
+            const navDots = document.querySelectorAll('.nav-dot');
+            const sections = document.querySelectorAll('.screen');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.getAttribute('data-target') === `#${current}`) {
+                        dot.classList.add('active');
+                    }
+                });
+            });
+            
+            // Navigation dots click handler
+            navDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const targetId = dot.getAttribute('data-target');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Skill bars animation
+            const skillProgress = document.querySelectorAll('.skill-progress');
+            
+            const skillsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const width = progressBar.getAttribute('data-width');
+                        
+                        gsap.to(progressBar, {
+                            scaleX: width.replace('%', '') / 100,
+                            duration: 1.5,
+                            ease: 'power2.out'
+                        });
+                        
+                        skillsObserver.unobserve(progressBar);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillProgress.forEach(progress => {
+                skillsObserver.observe(progress);
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                
+                // Simple validation
+                if (!nameInput.value || !emailInput.value || !messageInput.value) {
+                    alert('请填写所有必填字段');
+                    return;
+                }
+                
+                // Simulate form submission
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 发送中...';
+                
+                setTimeout(() => {
+                    alert('消息已发送！我会尽快回复您。');
+                    contactForm.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }, 1500);
+            });
+            
+            // Initialize scroll difference effects
+            initScrollDifference();
+        });
+        
+        // Scroll difference effect
+        function initScrollDifference() {
+            const screens = document.querySelectorAll('.screen');
+            
+            // Set initial z-index for screens
+            screens.forEach((screen, index) => {
+                screen.style.zIndex = 5 - index;
+            });
+            
+            // Create ScrollTrigger for each screen transition
+            screens.forEach((screen, index) => {
+                if (index < screens.length - 1) {
+                    const nextScreen = screens[index + 1];
+                    
+                    // First screen to second screen transition (reveal effect)
+                    if (index === 0) {
+                        gsap.to(nextScreen, {
+                            scrollTrigger: {
+                                trigger: screen,
+                                start: 'bottom top',
+                                end: 'bottom bottom',
+                                scrub: true
+                            },
+                            y: 0,
+                            ease: 'none'
+                        });
+                    } 
+                    // Other screen transitions (push effect)
+                    else {
+                        gsap.to(screen, {
+                            scrollTrigger: {
+                                trigger: nextScreen,
+                                start: 'top bottom',
+                                end: 'bottom bottom',
+                                scrub: true
+                            },
+                            y: -window.innerHeight * 0.3,
+                            ease: 'none'
+                        });
+                    }
+                }
+            });
+            
+            // Initialize GSAP animations for elements
+            initGSAPAnimations();
+        }
+        
+        // GSAP animations
+        function initGSAPAnimations() {
+            // Section headings animation
+            const sectionHeadings = document.querySelectorAll('h2');
+            sectionHeadings.forEach(heading => {
+                gsap.from(heading, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 80%'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8
+                });
+            });
+            
+            // Section dividers animation
+            const sectionDividers = document.querySelectorAll('.w-16.h-px');
+            sectionDividers.forEach(divider => {
+                gsap.from(divider, {
+                    scrollTrigger: {
+                        trigger: divider,
+                        start: 'top 80%'
+                    },
+                    width: 0,
+                    duration: 0.8,
+                    delay: 0.2
+                });
+            });
+            
+            // Content blocks animation
+            const contentBlocks = document.querySelectorAll('.project-card, .border-border');
+            contentBlocks.forEach((block, index) => {
+                gsap.from(block, {
+                    scrollTrigger: {
+                        trigger: block,
+                        start: 'top 80%'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    delay: 0.2 + (index * 0.1)
+                });
+            });
+            
+            // List items animation
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%'
+                    },
+                    opacity: 0,
+                    x: -20,
+                    duration: 0.6,
+                    delay: 0.1 + (index * 0.05)
+                });
+            });
+        }
+    </script>
+
+</body></html>
