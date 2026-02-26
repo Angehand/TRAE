@@ -224,6 +224,42 @@
             transform: scaleX(1);
             background-color: #3b82f6;
         }
+
+        /* Navbar pill + active menu item box */
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            padding: 8px 14px;
+            color: #666666;
+            transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+        }
+
+        .nav-link.is-active {
+            border-color: #000000;
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        .mobile-nav-link {
+            display: inline-flex;
+            width: fit-content;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #000000;
+            transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .mobile-nav-link.is-active {
+            border-color: #000000;
+            background-color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -231,31 +267,35 @@
     <div id="custom-cursor" class="fixed w-6 h-6 rounded-full border border-black pointer-events-none mix-blend-difference z-50 transform -translate-x-1/2 -translate-y-1/2 opacity-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-sm">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-xl font-medium tracking-wider" style="font-size: 48px; color: rgba(54, 8, 9, 0.98);">黄汉东</a>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-sm hover-button">关于我</a>
-                <a href="#education" class="text-sm hover-button">教育背景</a>
-                <a href="#experience" class="text-sm hover-button">实习经历</a>
-                <a href="#skills" class="text-sm hover-button">相关技能</a>
-                <a href="#contact" class="text-sm hover-button">联系方式</a>
+    <nav class="fixed top-0 left-0 w-full z-40 bg-transparent">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="bg-white rounded-full border border-border px-6 py-3 flex justify-between items-center">
+                <a href="#hero" class="text-2xl md:text-3xl font-semibold tracking-wider" style="color: rgba(54, 8, 9, 0.98);">黄汉东</a>
+                
+                <div class="hidden md:flex items-center gap-2">
+                    <a href="#about" data-target="#about" class="nav-link">关于我</a>
+                    <a href="#education" data-target="#education" class="nav-link">教育背景</a>
+                    <a href="#experience" data-target="#experience" class="nav-link">实习经历</a>
+
+                    <a href="#videos" data-target="#videos" class="nav-link">视频</a>
+                    <a href="#contact" data-target="#contact" class="nav-link">联系方式</a>
+                </div>
+                
+                <button class="md:hidden focus:outline-none" id="menu-toggle" aria-label="打开菜单">
+                    <i class="fa fa-bars"></i>
+                </button>
             </div>
-            
-            <button class="md:hidden focus:outline-none" id="menu-toggle">
-                <i class="fa fa-bars"></i>
-            </button>
         </div>
         
         <!-- Mobile menu -->
         <div class="md:hidden absolute w-full left-0 top-full bg-white border-t border-border transform -translate-y-full opacity-0 transition-all duration-300 invisible" id="mobile-menu">
             <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-                <a href="#about" class="text-sm py-2 hover:text-accent transition-colors">关于我</a>
-                <a href="#education" class="text-sm py-2 hover:text-accent transition-colors">教育背景</a>
-                <a href="#experience" class="text-sm py-2 hover:text-accent transition-colors">实习经历</a>
-                <a href="#skills" class="text-sm py-2 hover:text-accent transition-colors">相关技能</a>
-                <a href="#contact" class="text-sm py-2 hover:text-accent transition-colors">联系方式</a>
+                <a href="#about" data-target="#about" class="mobile-nav-link">关于我</a>
+                <a href="#education" data-target="#education" class="mobile-nav-link">教育背景</a>
+                <a href="#experience" data-target="#experience" class="mobile-nav-link">实习经历</a>
+
+                <a href="#videos" data-target="#videos" class="mobile-nav-link">视频</a>
+                <a href="#contact" data-target="#contact" class="mobile-nav-link">联系方式</a>
             </div>
         </div>
     </nav>
@@ -266,7 +306,7 @@
         <div class="nav-dot" data-target="#about"></div>
         <div class="nav-dot" data-target="#education"></div>
         <div class="nav-dot" data-target="#experience"></div>
-        <div class="nav-dot" data-target="#skills"></div>
+
         <div class="nav-dot" data-target="#contact"></div>
     </div>
 
@@ -287,15 +327,15 @@
                 <div class="md:w-1/2 mb-12 md:mb-0">
                     <div class="mb-2 text-sm uppercase tracking-widest text-secondary">
 </div>
-                    <h1 class="text-5xl md:text-7xl font-thin mb-6">黄汉东</h1>
+                    <div class="text-2xl md:text-3xl font-semibold mb-2">我是</div>
+                    <h1 class="text-6xl md:text-8xl font-extrabold mb-6 inline-block px-4 bg-yellow-300 transform transition-transform duration-300 hover:scale-110">黄汉东</h1>
                     <div class="w-32 h-px bg-black mb-6"></div>
-                    <p class="text-xl md:text-2xl font-thin mb-8">互联网产品 | 数字经济 | AI | PE</p>
                     <p class="text-secondary mb-10 max-w-lg">
                         热爱互联网产品/运营与AI的研究生，电子商务与数字经济专业背景，具备较好的产品思维和网感，熟悉AI领域行业动态和及技术趋势，擅长运营和数据分析，可熟练使用各类模型及工具。
                     </p>
                     <div class="flex space-x-8">
-                        <a href="#contact" class="px-6 py-3 border border-black hover:bg-black hover:text-white transition-smooth">
-                            联系我
+                        <a href="timeline.html" class="px-6 py-3 border border-black hover:bg-black hover:text-white transition-smooth">
+                            More about me
                         </a>
                         <a href="#experience" class="px-6 py-3 hover-button flex items-center">
                             查看经历 <i class="fa fa-long-arrow-right ml-2"></i>
@@ -304,9 +344,9 @@
                 </div>
                 
                 <div class="md:w-2/5">
-                    <div class="relative">
+                    <div class="relative overflow-hidden">
                         <div class="absolute -inset-4 border border-black opacity-20"></div>
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d5b58030c7ca446fba51262355407bb1~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=2026022515154008F54E84197F3F777DEF&amp;rrcfp=e75484ac&amp;x-expires=1772608542&amp;x-signature=LSHIytt5Gg3VCj%2BrmZfzK8j00b8%3D" alt="黄汉东" class="w-full h-auto object-cover relative z-10">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d5b58030c7ca446fba51262355407bb1~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=2026022515154008F54E84197F3F777DEF&amp;rrcfp=e75484ac&amp;x-expires=1772608542&amp;x-signature=LSHIytt5Gg3VCj%2BrmZfzK8j00b8%3D" alt="黄汉东" class="w-full h-auto object-cover relative z-10 transform transition-transform duration-500 hover:scale-110">
                     </div>
                 </div>
             </div>
@@ -328,7 +368,7 @@
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
                         <div class="text-xs uppercase tracking-widest text-secondary mb-4">01</div>
-                        <h2 class="text-3xl font-thin mb-6">关于我</h2>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">关于我</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -384,7 +424,7 @@
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
                         <div class="text-xs uppercase tracking-widest text-secondary mb-4">02</div>
-                        <h2 class="text-3xl font-thin mb-6">教育背景</h2>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">教育背景</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -460,7 +500,7 @@
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
                         <div class="text-xs uppercase tracking-widest text-secondary mb-4">03</div>
-                        <h2 class="text-3xl font-thin mb-6">实习经历</h2>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">实习经历</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -560,7 +600,7 @@
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
                         <div class="text-xs uppercase tracking-widest text-secondary mb-4">04</div>
-                        <h2 class="text-3xl font-thin mb-6">项目经历</h2>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">项目经历</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -626,15 +666,17 @@
         </div>
     </div></section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="screen relative min-h-screen flex items-center z-10 bg-light">
+
+
+    <!-- Videos Section -->
+    <section id="videos" class="screen relative min-h-screen flex items-center z-0 bg-white">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-12 gap-8">
                 <!-- Left column with decorative elements -->
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
-                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">04</div>
-                        <h2 class="text-3xl font-thin mb-6">相关技能</h2>
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">06</div>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">视频</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -644,126 +686,74 @@
                 
                 <!-- Right column with content -->
                 <div class="col-span-12 md:col-span-9">
-                    <!-- Technical Skills -->
                     <div class="mb-16">
-                        <h3 class="text-xl font-medium mb-8">专业技能</h3>
-                        
-                        <div class="space-y-8">
-                            <!-- Skill 1 -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>内容创作</span>
-                                    <span class="text-secondary">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="95%"></div>
-                                </div>
+                        <div class="flex justify-between items-center mb-10">
+                            <div class="inline-block">
+                                <h3 class="text-2xl font-bold bg-black text-white px-4 py-2">Videos</h3>
                             </div>
-                            
-                            <!-- Skill 2 -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>数据分析</span>
-                                    <span class="text-secondary">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="85%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Skill 3 -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>平台运营</span>
-                                    <span class="text-secondary">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="90%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Skill 4 -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>商务对接</span>
-                                    <span class="text-secondary">80%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="80%"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Skill 5 -->
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>市场调研</span>
-                                    <span class="text-secondary">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Tools & Certifications -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Tools -->
-                        <div class="border border-border p-8">
-                            <h3 class="text-xl font-medium mb-6">工具掌握</h3>
-                            
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <i class="fa fa-excel text-primary mr-3"></i>
-                                    <span>Excel</span>
-                                </div>
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <i class="fa fa-database text-primary mr-3"></i>
-                                    <span>SQL</span>
-                                </div>
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <i class="fa fa-picture-o text-primary mr-3"></i>
-                                    <span>Figma</span>
-                                </div>
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <i class="fa fa-robot text-primary mr-3"></i>
-                                    <span>Prompt</span>
-                                </div>
-                            </div>
+                            <a href="#" class="text-secondary hover:text-primary transition-colors">
+                                Watch all videos →
+                            </a>
                         </div>
                         
-                        <!-- Certifications -->
-                        <div class="border border-border p-8">
-                            <h3 class="text-xl font-medium mb-6">证书资质</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Video Card 1 -->
+                            <a href="https://www.bilibili.com/video/BV14VFyzpECY/?share_source=copy_web&vd_source=824e4566807f85c6eafd4c4a76926a4f" target="_blank" class="block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                                    <div class="relative">
+                                        <!-- Video Thumbnail -->
+                                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                                            <img src="xiaoyunque-cover.png" alt="每天学习一个AI产品：小云雀" class="w-full h-full object-cover">
+                                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 hover:bg-opacity-20 transition-all">
+                                                <i class="fa fa-play-circle text-6xl text-white"></i>
+                                            </div>
+                                        </div>
+                                        <!-- Video Duration -->
+                                        <div class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded">
+                                            14:54
+                                        </div>
+                                        <!-- Video Badge -->
+                                        <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                                            原创
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="text-lg font-medium mb-2">每天学习一个AI产品：小云雀</h4>
+                                        <p class="text-secondary text-sm mb-4">探索AI产品的功能与应用场景</p>
+                                        <div class="flex justify-between text-xs text-secondary">
+                                            <span><i class="fa fa-eye mr-1"></i> 10,000+</span>
+                                            <span><i class="fa fa-heart mr-1"></i> 500+</span>
+                                        </div>
+                                    </div>
+                                </a>
                             
-                            <div class="space-y-4">
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
-                                        <i class="fa fa-language text-xs"></i>
+                            <!-- Video Card 2 -->
+                            <a href="https://v.douyin.com/kFYpYCqJVa4/" target="_blank" class="block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                                    <div class="relative">
+                                        <!-- Video Thumbnail -->
+                                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                                            <img src="cet4-cover.png" alt="笨蛋考四级" class="w-full h-full object-cover">
+                                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 hover:bg-opacity-20 transition-all">
+                                                <i class="fa fa-play-circle text-6xl text-white"></i>
+                                            </div>
+                                        </div>
+                                        <!-- Video Duration -->
+                                        <div class="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded">
+                                            04:30
+                                        </div>
+                                        <!-- Video Badge -->
+                                        <div class="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                                            抖音
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div class="font-medium">英语四级</div>
-                                        <div class="text-xs text-secondary">2023年</div>
+                                    <div class="p-4">
+                                    <h4 class="text-lg font-medium mb-2">英语黑洞的四级首战 😅 # 四级</h4>
+                                    <p class="text-secondary text-sm mb-4">记录我在英语黑洞的四级首战瞬间</p>
+                                        <div class="flex justify-between text-xs text-secondary">
+                                        <span><i class="fa fa-eye mr-1"></i> 100w+</span>
+                                        <span><i class="fa fa-heart mr-1"></i> 2w+</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
-                                        <i class="fa fa-language text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">日语N1</div>
-                                        <div class="text-xs text-secondary">2024年</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center p-3 hover:bg-white transition-smooth">
-                                    <div class="w-8 h-8 rounded-full border border-black flex items-center justify-center mr-4">
-                                        <i class="fa fa-desktop text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">计算机二级</div>
-                                        <div class="text-xs text-secondary">2022年</div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -779,8 +769,8 @@
                 <!-- Left column with decorative elements -->
                 <div class="col-span-12 md:col-span-3">
                     <div class="sticky top-32">
-                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">05</div>
-                        <h2 class="text-3xl font-thin mb-6">联系方式</h2>
+                        <div class="text-xs uppercase tracking-widest text-secondary mb-4">06</div>
+                        <h2 class="text-4xl font-bold mb-6 px-4 py-2 bg-blue-100 inline-block transition-transform duration-300 hover:scale-105">联系方式</h2>
                         <div class="w-16 h-px bg-black mb-8"></div>
                         <div class="hidden md:block">
                             <div class="w-px h-32 bg-black opacity-20 mx-auto"></div>
@@ -890,7 +880,7 @@
                     <a href="#about" class="text-sm text-secondary hover:text-primary transition-colors">关于我</a>
                     <a href="#education" class="text-sm text-secondary hover:text-primary transition-colors">教育背景</a>
                     <a href="#experience" class="text-sm text-secondary hover:text-primary transition-colors">实习经历</a>
-                    <a href="#skills" class="text-sm text-secondary hover:text-primary transition-colors">相关技能</a>
+    
                 </div>
             </div>
             
@@ -998,6 +988,7 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
+                        setActiveNav(targetId);
                         window.scrollTo({
                             top: targetElement.offsetTop,
                             behavior: 'smooth'
@@ -1009,6 +1000,15 @@
             // Navigation dots active state
             const navDots = document.querySelectorAll('.nav-dot');
             const sections = document.querySelectorAll('.screen');
+
+            function setActiveNav(targetSelector) {
+                document.querySelectorAll('.nav-link[data-target]').forEach(link => {
+                    link.classList.toggle('is-active', link.getAttribute('data-target') === targetSelector);
+                });
+                document.querySelectorAll('.mobile-nav-link[data-target]').forEach(link => {
+                    link.classList.toggle('is-active', link.getAttribute('data-target') === targetSelector);
+                });
+            }
             
             window.addEventListener('scroll', () => {
                 let current = '';
@@ -1028,7 +1028,14 @@
                         dot.classList.add('active');
                     }
                 });
+
+                if (current) {
+                    setActiveNav(`#${current}`);
+                }
             });
+
+            // Initial active state
+            window.dispatchEvent(new Event('scroll'));
             
             // Navigation dots click handler
             navDots.forEach(dot => {
@@ -1037,6 +1044,7 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
+                        setActiveNav(targetId);
                         window.scrollTo({
                             top: targetElement.offsetTop,
                             behavior: 'smooth'
@@ -1048,26 +1056,7 @@
             // Skill bars animation
             const skillProgress = document.querySelectorAll('.skill-progress');
             
-            const skillsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const progressBar = entry.target;
-                        const width = progressBar.getAttribute('data-width');
-                        
-                        gsap.to(progressBar, {
-                            scaleX: width.replace('%', '') / 100,
-                            duration: 1.5,
-                            ease: 'power2.out'
-                        });
-                        
-                        skillsObserver.unobserve(progressBar);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            skillProgress.forEach(progress => {
-                skillsObserver.observe(progress);
-            });
+
             
             // Contact form submission
             const contactForm = document.getElementById('contact-form');
